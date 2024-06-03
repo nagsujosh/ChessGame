@@ -218,6 +218,13 @@ class Pawn(Piece):
             if 0 <= pawn_row + 1 < 8 and 0 <= pawn_col - 1 < 8 and board[pawn_row + 1][pawn_col - 1] is not None:
                 if board[pawn_row + 1][pawn_col - 1].color != self.color:
                     movesTakingPiece.append((pawn_row + 1, pawn_col - 1))
+            
+            # En Passant
+            if pawn_row == 4:
+                if board[pawn_row][pawn_col + 1].color == "W":
+                    movesNotTakingPiece.append((pawn_row - 1, pawn_col + 1))
+                if board[pawn_row][pawn_col - 1].color == "W":
+                    movesNotTakingPiece.append((pawn_row - 1, pawn_col - 1))
 
         else:
             # Moving forward
@@ -235,10 +242,45 @@ class Pawn(Piece):
                 if board[pawn_row -1][pawn_col - 1].color != self.color:
                     movesTakingPiece.append((pawn_row - 1, pawn_col - 1))
 
+            # En Passant
+            if pawn_row == 5:
+                if board[pawn_row][pawn_col + 1].color == "B":
+                    movesNotTakingPiece.append((pawn_row + 1, pawn_col + 1))
+                if board[pawn_row][pawn_col - 1].color == "B":
+                    movesNotTakingPiece.append((pawn_row + 1, pawn_col - 1))
+
         # Promotion check
         if (self.row == 6 and self.color == 'B') or (self.row == 1 and self.color == 'W'):
-            print("Choose Between Queen, Rook, Bishop, and Knight. Type your option: ")
-            # TODO: Implementing the promotion logic here
+            new_piece = input("Choose Between Queen, Rook, Bishop, and Knight. Type your option: ").strip().replace(' ', '').lower()
+
+            if turn == "W":
+                if new_piece == 'queen':
+                    board[0][self.col] = Queen(0, self.col, "W")
+                    board[1][self.col] = None
+                if new_piece == "rook":
+                    board[0][self.col] = Rook(0, self.col, "W")
+                    board[1][self.col] = None
+                    board[0][self.col].isRook = None
+                if new_piece == "bishop":
+                    board[0][self.col] = Bishop(0, self.col, "W")
+                    board[1][self.col] = None
+                if new_piece == "knight":
+                    board[0][self.col] = Knight(0, self.col, "W")
+                    board[1][self.col] = None
+            else:
+                if new_piece == 'queen':
+                    board[7][self.col] = Queen(7, self.col, "W")
+                    board[6][self.col] = None
+                if new_piece == "rook":
+                    board[7][self.col] = Rook(7, self.col, "W")
+                    board[6][self.col] = None
+                    board[7][self.col].isRook = None
+                if new_piece == "bishop":
+                    board[7][self.col] = Bishop(7, self.col, "W")
+                    board[6][self.col] = None
+                if new_piece == "knight":
+                    board[7][self.col] = Knight(7, self.col, "W")
+                    board[6][self.col] = None
 
         return movesTakingPiece, movesNotTakingPiece
 

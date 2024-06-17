@@ -37,8 +37,12 @@ def main(redraw_game_window_func, click_func):
                 if result:
                     board.select(*result)
 
+        if board.check_mate:
+            run = False
+
     # Quit Pygame
     pygame.quit()
+
 
 if __name__ == "__main__":
     main(redraw_game_window, click)

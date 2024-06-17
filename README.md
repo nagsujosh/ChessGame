@@ -2,11 +2,12 @@ Here is an improved version of the README file for the Pygame Chess Game project
 
 # Pygame Chess Game
 
-Welcome to the Pygame Chess Game! This project is a fully functional chess game built using Pygame, offering a simple and interactive way to play chess on your computer. Please note that some edge cases still need attention, such as scenarios where the opponent is checkmated and the only move to save the King involves capturing the checking piece with a different piece.
+Welcome to the Pygame Chess Game! This project is a partially functional chess game built using Pygame, offering a simple and interactive way to play chess on your computer. Please note that some edge cases still need attention, such as scenarios where the opponent is checkmated and the only move to save the King involves capturing the checking piece with a different piece.
 
 ## Table of Contents
 
 - [Features](#features)
+- [FeaturesFuture](#featurefuture)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -16,8 +17,12 @@ Welcome to the Pygame Chess Game! This project is a fully functional chess game 
 
 - Full implementation of standard chess rules
 - Interactive GUI using Pygame
-- En passant, castling, and promotion support
+- Castling, and promotion support
 - Check and checkmate detection
+
+## FeaturesFuture
+- En Passant
+- Currently if there is any checkmate then the game stops
 
 ## Installation
 

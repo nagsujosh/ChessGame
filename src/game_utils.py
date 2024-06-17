@@ -1,7 +1,9 @@
 import pygame
-from src.constants import *
+from typing import Tuple
+from pygame.surface import Surface
 
-def redraw_game_window(win, board_img, board):
+
+def redraw_game_window(win: Surface, board_img: Surface, board):
     """
     Redraw the game window
 
@@ -14,7 +16,8 @@ def redraw_game_window(win, board_img, board):
     board.draw(win, board.board)
     pygame.display.update()
 
-def click(pos, rect):
+
+def click(pos: Tuple[int, int], rect: Tuple[int, int, int, int]):
     """
     Convert pixel coordinates to board coordinates.
 

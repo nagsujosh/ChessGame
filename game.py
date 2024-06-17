@@ -1,9 +1,9 @@
-import pygame
 from src.board import Board
 from src.constants import *
 from src.game_utils import redraw_game_window, click
 
-def main():
+
+def main(redraw_game_window_func, click_func):
     # Initialize Pygame
     pygame.init()
 
@@ -17,14 +17,15 @@ def main():
     # Initialize the Board object
     board = Board(ROW, COL)
 
-    global run
+    run = True  # Initialize run variable
+
     # Main game loop
     while run:
         # Cap the frame rate
         clock.tick(FPS)
 
         # Redraw the game window
-        redraw_game_window(win, board_img, board)
+        redraw_game_window_func(win, board_img, board)
 
         # Event handling
         for event in pygame.event.get():
@@ -32,7 +33,7 @@ def main():
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 position = pygame.mouse.get_pos()
-                result = click(position, BOARD_RECT)
+                result = click_func(position, BOARD_RECT)
                 if result:
                     board.select(*result)
 
@@ -40,4 +41,4 @@ def main():
     pygame.quit()
 
 if __name__ == "__main__":
-    main()
+    main(redraw_game_window, click)

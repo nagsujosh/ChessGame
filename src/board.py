@@ -67,12 +67,39 @@ class Board:
         if piece.is_pawn:
             if piece.first_move:
                 self.update_pawn_first_move(piece)
+            self.promotion_check(piece)
         elif piece.is_king:
             if piece.first_move:
                 self.update_king_first_move(piece)
         elif isinstance(piece.is_rook, tuple):
             if piece.first_move:
                 self.update_rook_first_move(piece)
+
+    def promotion_check(self, piece: Piece) -> None:
+        color = piece.color
+        if (color == "B" and piece.row == 7) or (color == "W" and piece.row == 0):
+            print(f"Choose your promotion piece between Queen, Rook, Knight, and Bishop for {color}: ")
+            while True:
+                name = input().strip().lower()
+                if name in ['queen', 'rook', 'bishop', 'knight']:
+                    promotion_row = piece.row
+                    promotion_col = piece.col
+                    promoted_piece = None
+                    if name == 'queen':
+                        promoted_piece = Queen(promotion_row, promotion_col, color)
+                    elif name == 'rook':
+                        promoted_piece = Rook(promotion_row, promotion_col, color)
+                        promoted_piece.is_rook = True  # Example of setting an attribute
+                    elif name == 'bishop':
+                        promoted_piece = Bishop(promotion_row, promotion_col, color)
+                    else:
+                        promoted_piece = Knight(promotion_row, promotion_col, color)
+
+                    if promoted_piece:
+                        self.board[promotion_row][promotion_col] = promoted_piece
+                        break
+                else:
+                    print("Invalid input. Please choose Queen, Rook, Bishop, or Knight.")
 
     def update_pawn_first_move(self, piece: Piece) -> None:
         if piece.row > 1 and piece.color == "B":

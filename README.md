@@ -16,11 +16,11 @@ Welcome to the Pygame Chess Game! This project is a partially functional chess g
 - Full implementation of standard chess rules
 - Interactive GUI using Pygame
 - Castling, and promotion support
-- Check and checkmate detection
+- Check, checkmate detection and ending the game
 
 ## FeaturesFuture
 - En Passant
-- Currently if there is any checkmate then the game stops
+- Using Socket to enable two players play in real time
 
 ## Installation
 

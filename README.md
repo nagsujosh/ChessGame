@@ -1,5 +1,3 @@
-Here is an improved version of the README file for the Pygame Chess Game project:
-
 # Pygame Chess Game
 
 Welcome to the Pygame Chess Game! This project is a partially functional chess game built using Pygame, offering a simple and interactive way to play chess on your computer. Please note that some edge cases still need attention, such as scenarios where the opponent is checkmated and the only move to save the King involves capturing the checking piece with a different piece.

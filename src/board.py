@@ -165,8 +165,6 @@ class Board:
               self.board[previous_row][previous_col].color == turn and
               self.board[previous_row][previous_col].is_king):
             if self.board[previous_row][previous_col].first_move:
-                self.deselect_all()
-                self.move(previous_row, previous_col, row, col)
 
                 if col == 2:
                     if turn == "B":
@@ -179,8 +177,10 @@ class Board:
                         self.board[7][0] = None
                         self.board[7][3].row = 7
                         self.board[7][3].col = 3
+                    self.deselect_all()
+                    self.move(previous_row, previous_col, row, col)
 
-                if col == 6:
+                elif col == 6:
                     if turn == "B":
                         self.board[0][5] = self.board[0][7]
                         self.board[0][7] = None
@@ -192,8 +192,28 @@ class Board:
                         self.board[7][5].row = 7
                         self.board[7][5].col = 5
 
-                turn = "W" if turn == "B" else "B"
-                return
+                    self.deselect_all()
+                    self.move(previous_row, previous_col, row, col)
+                    turn = "W" if turn == "B" else "B"
+                    return
+                else:
+                    if self.board[previous_row][previous_col].available_moves_taking_piece:
+                        if (row, col) in self.board[previous_row][previous_col].available_moves_taking_piece:
+                            self.deselect_all()
+                            self.move(previous_row, previous_col, row, col)
+                            turn = "W" if turn == "B" else "B"
+                            return
+                    if self.board[previous_row][previous_col].available_moves_not_taking_piece:
+                        if (row, col) in self.board[previous_row][previous_col].available_moves_not_taking_piece:
+                            self.deselect_all()
+                            self.move(previous_row, previous_col, row, col)
+                            turn = "W" if turn == "B" else "B"
+                            return
+                    if (self.board[previous_row][previous_col].available_moves_taking_piece or
+                            self.board[previous_row][previous_col].available_moves_not_taking_piece or
+                            ["Something"] and self.board[previous_row][previous_col].color == turn):
+                        self.deselect_all()
+                        self.select_piece(row, col)
             else:
                 self.deselect_all()
                 self.move(previous_row, previous_col, row, col)

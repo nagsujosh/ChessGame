@@ -3,3 +3,6 @@
 
 # Ignore Python virtual environment
 venv/
+
+# Ignore pycache
+src/__pycache__/

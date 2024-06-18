@@ -1,6 +1,7 @@
 from typing import List, Tuple, Optional
 from .piece import Piece
 
+
 class Rook(Piece):
     img: int = 5
 

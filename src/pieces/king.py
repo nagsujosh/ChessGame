@@ -1,5 +1,6 @@
 from .piece import Piece
 
+
 class King(Piece):
     img = 1
 

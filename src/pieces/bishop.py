@@ -1,6 +1,7 @@
 from .piece import Piece
 from typing import List, Tuple, Optional
 
+
 class Bishop(Piece):
     img: int = 0
 

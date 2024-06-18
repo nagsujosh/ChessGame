@@ -506,4 +506,3 @@ class Board:
 
         # If no checkmate condition is found for either king
         return "WB", False
-

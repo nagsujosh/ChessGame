@@ -1,6 +1,7 @@
 from .piece import Piece
 from typing import List, Tuple, Optional
 
+
 class Pawn(Piece):
     img: int = 3
 

@@ -1,53 +1,16 @@
-from typing import List, Optional, Tuple
+from typing import Optional
 from src.pieces import *
 from src.constants import *
 from pygame.surface import Surface
+from src.board.board_initialize import initialize_board
 
 
 class Board:
     def __init__(self, rows: int, cols: int) -> None:
-        self.rows: int = rows
-        self.cols: int = cols
+        self.rows = rows
+        self.cols = cols
         self.board: List[List[Optional[Piece]]] = [[None for _ in range(cols)] for _ in range(rows)]
-
-        # Initialize black pieces
-        self.board[0][0] = Rook(0, 0, "B")
-        self.board[0][1] = Knight(0, 1, "B")
-        self.board[0][2] = Bishop(0, 2, "B")
-        self.board[0][3] = Queen(0, 3, "B")
-        self.board[0][4] = King(0, 4, "B")
-        self.board[0][5] = Bishop(0, 5, "B")
-        self.board[0][6] = Knight(0, 6, "B")
-        self.board[0][7] = Rook(0, 7, "B")
-
-        for col in range(cols):
-            self.board[1][col] = Pawn(1, col, "B")
-            self.board[1][col].is_pawn = True
-
-        # Initialize white pieces
-        self.board[7][0] = Rook(7, 0, "W")
-        self.board[7][1] = Knight(7, 1, "W")
-        self.board[7][2] = Bishop(7, 2, "W")
-        self.board[7][3] = Queen(7, 3, "W")
-        self.board[7][4] = King(7, 4, "W")
-        self.board[7][5] = Bishop(7, 5, "W")
-        self.board[7][6] = Knight(7, 6, "W")
-        self.board[7][7] = Rook(7, 7, "W")
-
-        for col in range(cols):
-            self.board[6][col] = Pawn(6, col, "W")
-            self.board[6][col].is_pawn = True
-
-        # Set additional attributes for kings and rooks
-        self.board[0][4].is_king = True
-        self.board[7][4].is_king = True
-
-        # Here in the tuple the first value indicates this the piece is a rook and
-        # the second element indicates that the rook is from the left side
-        self.board[0][0].is_rook = (True, True)
-        self.board[7][0].is_rook = (True, True)
-        self.board[7][7].is_rook = (True, False)
-        self.board[0][7].is_rook = (True, False)
+        initialize_board(self)
 
     def draw(self, win: Surface, board: List[List[Optional[Piece]]]) -> None:
         global run, turn

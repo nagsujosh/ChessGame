@@ -1,6 +1,6 @@
 from src.board import Board
 from src.constants import *
-from src.game_utils import redraw_game_window, click
+from game_utils import redraw_game_window, click
 
 
 def main(redraw_game_window_func, click_func):

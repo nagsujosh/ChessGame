@@ -1,7 +1,6 @@
 import pygame
 from pygame.surface import Surface
 from typing import Tuple, Optional
-from src.board.board_utils import *
 
 
 def redraw_game_window(win: Surface, board_img: Surface, board) -> None:
